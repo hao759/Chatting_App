@@ -14,10 +14,6 @@ namespace API.Controllers
         {
             _context = dataContext;
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
         [HttpGet]
         public async Task<ActionResult<List<AppUser>>> GetUsers()
         {
