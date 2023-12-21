@@ -13,7 +13,7 @@ namespace API.Controllers
     {
         private DataContext _context;
         private ITokenService _tokenService;
-        public AccountsController(DataContext dataContext,ITokenService tokenService1)
+        public AccountsController(DataContext dataContext, ITokenService tokenService1)
         {
             _context = dataContext;
             _tokenService = tokenService1;

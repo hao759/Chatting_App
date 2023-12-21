@@ -28,3 +28,19 @@ public class TokenService : ITokenService
             return tokenHandler.WriteToken(token);
         }
     }
+
+
+
+configuration jwt:
+"Microsoft.AspNetCore.Authentication.JwtBearer
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey"])),
+        ValidateIssuer= false,
+        ValidateAudience= false,
+    };
+});

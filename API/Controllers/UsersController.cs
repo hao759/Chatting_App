@@ -1,11 +1,13 @@
 ﻿using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
@@ -17,7 +19,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<AppUser>>> GetUsers()
         {
-            var users= await _context.appUsers.ToListAsync(); 
+            var users = await _context.appUsers.ToListAsync();
             return users;
         }
 
