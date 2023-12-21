@@ -1,6 +1,7 @@
 ﻿using API.Data;
 using API.DTO;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
@@ -11,9 +12,11 @@ namespace API.Controllers
     public class AccountsController : BaseController
     {
         private DataContext _context;
-        public AccountsController(DataContext dataContext)
+        private ITokenService _tokenService;
+        public AccountsController(DataContext dataContext,ITokenService tokenService1)
         {
             _context = dataContext;
+            _tokenService = tokenService1;
         }
         [HttpPost("register")] //api/control/regis
         public async Task<ActionResult<AppUser>> Register(string username, string password)
@@ -31,7 +34,7 @@ namespace API.Controllers
         }
 
         [HttpPost("login")] //api/control/regis
-        public async Task<ActionResult<AppUser>> Login(LoginDTO login)
+        public async Task<ActionResult<UserDTO>> Login(LoginDTO login)
         {
             var user = await _context.appUsers.FirstOrDefaultAsync(s => s.Name == login.Name);
             if (user == null)
@@ -41,7 +44,11 @@ namespace API.Controllers
             for (int i = 0; i < ComputeHash.Length; i++)
                 if (ComputeHash[i] != user.PasswordHash[i])
                     return Unauthorized("Sai pass");
-            return Ok(user);
+            return new UserDTO
+            {
+                UserName = login.Name,
+                Token = _tokenService.CreateToken(user)
+            };
         }
 
     }
