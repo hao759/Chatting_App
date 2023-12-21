@@ -7,9 +7,9 @@ namespace API.Data
     {
         public DataContext(DbContextOptions opt) : base(opt)
         {
-            
+
         }
         public DbSet<AppUser> appUsers { get; set; }
     }
 }
-   
+
