@@ -44,3 +44,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateAudience= false,
     };
 });
+
+===============================Extension=======================================================================
+Tạo 1 class static(tên j ko qtrong)
+public static IServiceCollection AddExtension
+        (this IServiceCollection services, 
+            IConfiguration configuration)
