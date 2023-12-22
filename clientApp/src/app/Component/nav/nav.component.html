@@ -13,13 +13,14 @@
                         <span class="visually-hidden">(current)</span></a>
                 </li>
             </ul>
-            <ul *ngIf="LoggedIn" class="navbar-nav me-auto mt-2 mt-lg-0">
+            <ul *ngIf="accountService.currentUser| async" class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
                     <!-- <a class="nav-link active"  aria-current="page">Home </a> -->
                     <div (click)="logout()">Logout</div>
                 </li>
             </ul>
-            <form *ngIf="!LoggedIn" #loginform="ngForm" (ngSubmit)="onSubmit()" class="d-flex my-2 my-lg-0">
+            <form *ngIf="!(accountService.currentUser| async)" #loginform="ngForm" (ngSubmit)="onSubmit()"
+                class="d-flex my-2 my-lg-0">
                 <input class="form-control me-sm-2" type="text" name="name" [(ngModel)]="Model.name"
                     placeholder="User name" />
                 <input class="form-control me-sm-2" type="password" name="password" [(ngModel)]="Model.password"
