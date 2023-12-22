@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'Dating App';
   constructor(private http: HttpClient) { }
   ngOnInit(): void {
-    this.http.get('http://localhost:5225/api/users').subscribe(data => {
+    this.http.get('https://localhost:5225/api/users').subscribe(data => {
       console.log(data)
     })
   }
