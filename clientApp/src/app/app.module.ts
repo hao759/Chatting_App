@@ -13,6 +13,7 @@ import { MemberListComponent } from './Component/members/member-list/member-list
 import { MemberDetailComponent } from './Component/members/member-detail/member-detail.component';
 import { ListsComponent } from './Component/members/lists/lists.component';
 import { MessagesComponent } from './Component/members/messages/messages.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,13 @@ import { MessagesComponent } from './Component/members/messages/messages.compone
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 4000,
+        positionClass: 'toast-bottom-right',
+        preventDuplicates: true,
+      }
+    ),
   ],
   providers: [
     AccountService

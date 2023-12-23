@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { User } from 'src/app/_models/User';
 import { AccountService } from 'src/app/_service/account.service';
@@ -14,19 +16,22 @@ export class NavComponent {
   currentUser: Observable<User | null> = of(null)
 
 
-  constructor(public accountService: AccountService) {
+  constructor(public accountService: AccountService, public route: Router, private toastr: ToastrService) {
     // this.currentUser = this.accountService.currentUser
   }
 
   onSubmit() {
-    console.log(this.Model)
+    this.toastr.error('Pass sai', 'Error', {
+      timeOut: 3000,
+    });
     this.accountService.login(this.Model).subscribe(data => {
-      console.log(data)
+      this.route.navigateByUrl('/member')
     });
 
   }
   logout() {
     this.accountService.logout()
+    this.route.navigateByUrl('/')
   }
   // getCurrentUser() {
   //   this.accountService.currentUser.subscribe({

@@ -5,6 +5,7 @@ import { MemberListComponent } from './Component/members/member-list/member-list
 import { MemberDetailComponent } from './Component/members/member-detail/member-detail.component';
 import { MessagesComponent } from './Component/members/messages/messages.component';
 import { ListsComponent } from './Component/members/lists/lists.component';
+import { GuardGuard } from './_guard/-guard.guard';
 
 const routes: Routes = [
   {
@@ -13,11 +14,13 @@ const routes: Routes = [
   },
   {
     path: "member",
-    component: MemberListComponent
+    component: MemberListComponent,
+    canActivate: [GuardGuard]
   },
   {
     path: "member/:id",
-    component: MemberDetailComponent
+    component: MemberDetailComponent,
+    canActivate: [GuardGuard]
   },
   {
     path: "list",
