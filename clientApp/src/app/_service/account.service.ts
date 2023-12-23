@@ -22,6 +22,14 @@ export class AccountService {
     }))
   }
 
+  register(model: any): Observable<any> {
+    return this.http.post<any>(this.baseURL + "accounts/register", model).pipe(map((user: User) => {
+      localStorage.setItem("user", JSON.stringify(user))
+      this.currentUserSource.next(user)
+    }
+    ))
+  }
+
   setCurrentUser(user: User) {
     this.currentUserSource.next(user)
   }

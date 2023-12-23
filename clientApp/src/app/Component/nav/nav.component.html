@@ -9,8 +9,15 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" aria-current="page">Home
-                        <span class="visually-hidden">(current)</span></a>
+                    <a class="nav-link active" routerLink='member' routerLinkActive="active"
+                        aria-current="page">Member</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink='list' routerLinkActive="active" aria-current="list">List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink='message' routerLinkActive="active"
+                        aria-current="page">Message</a>
                 </li>
             </ul>
             <ul *ngIf="accountService.currentUser| async" class="navbar-nav me-auto mt-2 mt-lg-0">
@@ -32,4 +39,4 @@
         </div>
     </div>
 </nav>
-<app-home></app-home>
+<!-- <app-home></app-home> -->
