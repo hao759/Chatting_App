@@ -14,6 +14,7 @@ import { MemberDetailComponent } from './Component/members/member-detail/member-
 import { ListsComponent } from './Component/members/lists/lists.component';
 import { MessagesComponent } from './Component/members/messages/messages.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ModuleShareModule } from './-module-share/-module-share.module';
 
 @NgModule({
   declarations: [
@@ -30,14 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    ToastrModule.forRoot(
-      {
-        timeOut: 4000,
-        positionClass: 'toast-bottom-right',
-        preventDuplicates: true,
-      }
-    ),
+    ModuleShareModule
   ],
   providers: [
     AccountService

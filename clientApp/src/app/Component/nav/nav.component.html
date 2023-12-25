@@ -16,14 +16,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" routerLink='list' routerLinkActive="active" aria-current="list">List</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="(accountService.currentUser| async) as user">
                     <a class="nav-link active" routerLink='message' routerLinkActive="active"
-                        aria-current="page">Message</a>
+                        aria-current="page">Message: {{user.username}} </a>
                 </li>
             </ul>
+
             <ul *ngIf="accountService.currentUser| async" class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <!-- <a class="nav-link active"  aria-current="page">Home </a> -->
                     <div (click)="logout()">Logout</div>
                 </li>
             </ul>
@@ -33,7 +33,7 @@
                     placeholder="User name" />
                 <input class="form-control me-sm-2" type="password" name="password" [(ngModel)]="Model.password"
                     placeholder="password" />
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                <button class="btn btn-success my-2 my-sm-0" type="submit">
                     Login
                 </button>
             </form>
