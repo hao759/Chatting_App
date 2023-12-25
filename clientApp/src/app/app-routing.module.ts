@@ -18,18 +18,26 @@ const routes: Routes = [
     canActivate: [GuardGuard]
   },
   {
-    path: "member/:id",
-    component: MemberDetailComponent,
-    canActivate: [GuardGuard]
+    path: "",
+    runGuardsAndResolvers: "always",
+    canActivate: [GuardGuard],
+    children: [
+      {
+        path: "member/:id",
+        component: MemberDetailComponent,
+        canActivate: [GuardGuard]
+      },
+      {
+        path: "list",
+        component: ListsComponent
+      },
+      {
+        path: "message",
+        component: MessagesComponent
+      }
+    ]
   },
-  {
-    path: "list",
-    component: ListsComponent
-  },
-  {
-    path: "message",
-    component: MessagesComponent
-  }
+
 ];
 
 @NgModule({
