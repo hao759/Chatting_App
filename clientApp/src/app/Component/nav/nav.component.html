@@ -20,6 +20,10 @@
                     <a class="nav-link active" routerLink='message' routerLinkActive="active"
                         aria-current="page">Message: {{user.userName}} </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink='error' routerLinkActive="active" aria-current="list">Test
+                        Error</a>
+                </li>
             </ul>
 
             <ul *ngIf="accountService.currentUser| async" class="navbar-nav me-auto mt-2 mt-lg-0">

@@ -16,6 +16,7 @@ import { MessagesComponent } from './Component/members/messages/messages.compone
 import { ToastrModule } from 'ngx-toastr';
 import { ModuleShareModule } from './-module-share/-module-share.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TestErrorComponent } from './error/test-error/test-error.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MemberListComponent,
     MemberDetailComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    TestErrorComponent
   ],
   imports: [
     BrowserModule,

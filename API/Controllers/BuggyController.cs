@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Route("[controller]")]
     public class BuggyController : BaseController
     {
         DataContext _context;

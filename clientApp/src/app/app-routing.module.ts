@@ -6,6 +6,7 @@ import { MemberDetailComponent } from './Component/members/member-detail/member-
 import { MessagesComponent } from './Component/members/messages/messages.component';
 import { ListsComponent } from './Component/members/lists/lists.component';
 import { GuardGuard } from './_guard/-guard.guard';
+import { TestErrorComponent } from './error/test-error/test-error.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: "message",
         component: MessagesComponent
+      },
+      {
+        path: "error",
+        component: TestErrorComponent
       }
     ]
   },
