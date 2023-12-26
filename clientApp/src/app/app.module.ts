@@ -15,7 +15,7 @@ import { ListsComponent } from './Component/members/lists/lists.component';
 import { MessagesComponent } from './Component/members/messages/messages.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ModuleShareModule } from './-module-share/-module-share.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +31,8 @@ import { ModuleShareModule } from './-module-share/-module-share.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ModuleShareModule
+    ModuleShareModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     AccountService

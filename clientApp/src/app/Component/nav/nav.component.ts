@@ -21,10 +21,11 @@ export class NavComponent {
   }
 
   onSubmit() {
-    this.toastr.error('Pass sai', 'Error', {
-      timeOut: 3000,
-    });
     this.accountService.login(this.Model).subscribe(data => {
+      console.log(this.accountService.currentUser)
+      this.toastr.error('Dang nhap thanh cong', 'Error', {
+        timeOut: 3000,
+      });
       this.route.navigateByUrl('/member')
     });
 
