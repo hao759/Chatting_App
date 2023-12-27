@@ -21,6 +21,8 @@ namespace API.Extensions
              });
 
             services.AddScoped<IUserRepositoty, UserRepository>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             return services;
         }
     }

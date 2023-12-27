@@ -29,7 +29,7 @@ namespace API.Data
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
-            return await _context.appUsers.ToListAsync();
+            return await _context.appUsers.Include(s => s.Photos).ToListAsync();
         }
 
         public void Update(AppUser user)
