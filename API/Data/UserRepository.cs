@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTO;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -11,11 +14,12 @@ namespace API.Data
     public class UserRepository : IUserRepositoty
     {
         public DataContext _context { get; }
+        public IMapper Mapper { get; }
 
-        public UserRepository(DataContext dataContext)
+        public UserRepository(DataContext dataContext, IMapper mapper)
         {
+            this.Mapper = mapper;
             this._context = dataContext;
-
         }
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
@@ -41,6 +45,21 @@ namespace API.Data
         async Task<bool> IUserRepositoty.SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<List<MemberDTO>> GetMembersAsync()
+        {
+            return await _context.appUsers
+          .ProjectTo<MemberDTO>(Mapper.ConfigurationProvider)
+          .ToListAsync();
+        }
+
+        public async Task<MemberDTO> GetMemberAsync(string username)
+        {
+
+            return await _context.appUsers.Where(x => x.Name == username)
+           .ProjectTo<MemberDTO>(Mapper.ConfigurationProvider)
+           .SingleOrDefaultAsync();
         }
     }
 }
