@@ -50,3 +50,22 @@ Tạo 1 class static(tên j ko qtrong)
 public static IServiceCollection AddExtension
         (this IServiceCollection services, 
             IConfiguration configuration)
+
+  ===============================UseDateOnly==========================================================
+
+  protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+        {
+            base.ConfigureConventions(builder);
+            builder.Properties<DateOnly>()
+                .HaveConversion<DateOnlyConverter>();
+
+        }
+        public class DateOnlyConverter : ValueConverter<DateOnly, DateTime>
+        {
+            public DateOnlyConverter() : base(
+                dateOnly => dateOnly.ToDateTime(TimeOnly.MinValue),
+                dateTime => DateOnly.FromDateTime(dateTime))
+            { }
+        }
+
+       ===============================UseDateOnly==========================================================           
