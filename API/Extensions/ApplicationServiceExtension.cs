@@ -19,6 +19,8 @@ namespace API.Extensions
              {
                  opt.UseSqlServer(configuration.GetConnectionString("ConnectString"));
              });
+
+            services.AddScoped<IUserRepositoty, UserRepository>();
             return services;
         }
     }
