@@ -1,5 +1,7 @@
 add System.IdentityModel.Token
 
+ng generate environments
+
 
 public class TokenService : ITokenService
     {
@@ -68,4 +70,31 @@ public static IServiceCollection AddExtension
             { }
         }
 
-       ===============================UseDateOnly==========================================================           
+       ===============================AutoMapper==========================================================      
+       add AutoMapper.Extensions.Microsoft.DependencyInjection
+
+      Controller:  var user = await _userRepositoty.GetUsersAsync();
+            var userToReturn = mapper.Map<List<MemberDTO>>(user);   //IMapper 
+
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());   
+
+    1 class riêng :
+    public class AutoMapperProfiles : Profile
+    {
+        public AutoMapperProfiles()
+        {
+            CreateMap<AppUser, MemberDTO>()
+            .ForMember(dest => dest.Name2, opt => opt.MapFrom(src => src.Photos.FirstOrDefault(x => x.IsMain).Url));
+            CreateMap<Photo, PhotoDTO>();
+        }
+    }
+
+bỏ method GetAge ,tự hỉu trả về int là age
+
+    2:           return await _context.appUsers
+          .ProjectTo<MemberDTO>(Mapper.ConfigurationProvider)
+          .ToListAsync();
+
+
+          .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CaculateAge()));

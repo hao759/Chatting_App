@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ModuleShareModule } from './-module-share/-module-share.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestErrorComponent } from './error/test-error/test-error.component';
+import { MemberCardComponent } from './Component/members/member-card/member-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { TestErrorComponent } from './error/test-error/test-error.component';
     MemberDetailComponent,
     ListsComponent,
     MessagesComponent,
-    TestErrorComponent
+    TestErrorComponent,
+    MemberCardComponent
   ],
   imports: [
     BrowserModule,
