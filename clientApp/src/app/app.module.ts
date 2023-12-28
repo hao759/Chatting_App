@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestErrorComponent } from './error/test-error/test-error.component';
 import { MemberCardComponent } from './Component/members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptor/jwt.interceptor';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { JwtInterceptor } from './_interceptor/jwt.interceptor';
     HttpClientModule,
     ModuleShareModule,
     BrowserAnimationsModule,
+    TabsModule.forRoot(),
   ],
   providers: [
     AccountService,

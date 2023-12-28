@@ -24,7 +24,7 @@ const routes: Routes = [
     canActivate: [GuardGuard],
     children: [
       {
-        path: "member/:id",
+        path: "member/:username",
         component: MemberDetailComponent,
         canActivate: [GuardGuard]
       },
