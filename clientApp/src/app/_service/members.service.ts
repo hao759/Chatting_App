@@ -11,22 +11,22 @@ export class MembersService {
   constructor(private http: HttpClient) { }
 
   getMembers() {
-    return this.http.get<Member[]>(this.baseURL + "users", this.getHttpOption())
+    return this.http.get<Member[]>(this.baseURL + "users")
   }
 
   getMember(username: string) {
-    return this.http.get<Member>(this.baseURL + "users/" + username, this.getHttpOption())
+    return this.http.get<Member>(this.baseURL + "users/" + username)
   }
 
-  getHttpOption() {
-    const userString = localStorage.getItem("user");
-    if (!userString)
-      return;
-    const user = JSON.parse(userString)
-    return {
-      headers: new HttpHeaders({
-        authorization: "Bearer " + user.token
-      })
-    }
-  }
+  // getHttpOption() {
+  //   const userString = localStorage.getItem("user");
+  //   if (!userString)
+  //     return;
+  //   const user = JSON.parse(userString)
+  //   return {
+  //     headers: new HttpHeaders({
+  //       authorization: "Bearer " + user.token
+  //     })
+  //   }
+  // }
 }

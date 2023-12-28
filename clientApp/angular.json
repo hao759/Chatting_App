@@ -22,7 +22,8 @@
             "styles": [
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/bootswatch/dist/Flatly/bootstrap.css"
+              "node_modules/bootswatch/dist/Flatly/bootstrap.css",
+              "node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "scripts": []
           },

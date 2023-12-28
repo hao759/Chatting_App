@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { NavComponent } from './Component/nav/nav.component'
 import { FormsModule } from '@angular/forms';
 import { AccountService } from './_service/account.service';
@@ -18,6 +18,7 @@ import { ModuleShareModule } from './-module-share/-module-share.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestErrorComponent } from './error/test-error/test-error.component';
 import { MemberCardComponent } from './Component/members/member-card/member-card.component';
+import { JwtInterceptor } from './_interceptor/jwt.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { MemberCardComponent } from './Component/members/member-card/member-card
     BrowserAnimationsModule,
   ],
   providers: [
-    AccountService
+    AccountService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
 add System.IdentityModel.Token
 
 ng generate environments
-
+ng g interceptor jwt
 
 public class TokenService : ITokenService
     {
