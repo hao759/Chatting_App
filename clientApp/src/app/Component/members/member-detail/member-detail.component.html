@@ -23,30 +23,35 @@
                     <p>{{member?.created | date:'dd MMM yyyy'}}</p>
                 </div>
             </div>
-            <!-- <div class="card-footer">
+            <div class="card-footer">
                 <div class="btn-group d-flex">
                     <button class="btn btn-primary">Like</button>
-                    <button (click)="selectTab('Messages')" class="btn btn-success">Message</button>
+                    <!-- <button (click)="selectTab('Messages')" class="btn btn-success">Message</button> -->
+                    <button class="btn btn-success">Message</button>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
     <div class="col-8">
         <tabset class="member-tabset" #memberTabs>
-            <!-- <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)">
+            <!-- <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)"> -->
+            <tab heading="About {{member.knownAs}}">
                 <h4>Description</h4>
                 <p>{{member.introduction}}</p>
                 <h4>Looking for</h4>
                 <p>{{member.lookingFor}}</p>
             </tab>
-            <tab heading="Interests" (selectTab)="onTabActivated($event)">
+            <!-- <tab heading="Interests" (selectTab)="onTabActivated($event)"> -->
+            <tab heading="Interests">
                 <h4>Interests</h4>
                 <p>{{member.interests}}</p>
             </tab>
-            <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActivated($event)">
-                <gallery *ngIf="photoTab.active" [items]="images" class="gallery"></gallery>
+            <!-- <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActivated($event)"> -->
+            <tab heading="Photos" #photoTab="tab">
+                <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="gallery"></ngx-gallery> -->
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
             </tab>
-            <tab heading="Messages" (selectTab)="onTabActivated($event)">
+            <!-- <tab heading="Messages" (selectTab)="onTabActivated($event)"         *ngIf="photoTab.active">
                 <app-member-messages [username]="member.userName"></app-member-messages>
             </tab> -->
         </tabset>

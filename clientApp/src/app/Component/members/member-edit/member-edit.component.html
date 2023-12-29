@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-4">
+        <div class="row">
+            <div class="col-4">
+                <h3>Your Profile</h3>
+            </div>
+            <div class="col-8">
+                <div *ngIf="editForm.dirty" class="alert alert-info">
+                    <p><strong>Information will biến mất</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{member.photos[0].url}}" alt="{{member?.knownAs}}" class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <!-- <div class="mb-2" *ngIf="(presenceService.onlineUsers$ | async)?.includes(member?.name)">
+                    <i class="fa fa-user-circle text-success"></i> Online now
+                </div> -->
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member?.city}}, {{member?.country}}</p>
+                </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p>{{member?.age}}</p>
+                </div>
+                <div>
+                    <strong>Last active:</strong>
+                    <p>{{member?.lastActive}}</p>
+                </div>
+                <div>
+                    <strong>Member since:</strong>
+                    <p>{{member?.created | date:'dd MMM yyyy'}}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button class="btn btn-success" form="editForm">Save change</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <tabset class="member-tabset" #memberTabs>
+            <!-- <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)"> -->
+            <tab heading="About {{member.knownAs}}">
+                <form #editForm="ngForm" id="editForm" (submit)="editMember()">
+                    <h4>Description</h4>
+                    <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction"
+                        rows="5"></textarea>
+                    <h4>Looking for</h4>
+                    <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor"
+                        rows="5"></textarea>
+                    <h4>Interests</h4>
+                    <textarea class="form-control" [(ngModel)]="member.interests" name="interests" rows="5"></textarea>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 for="city">City</h4>
+                            <input class="form-control col-6" [(ngModel)]="member.city" name="cit" />
+                        </div>
+                        <div class="col-6">
+                            <h4>Country</h4>
+                            <input class="form-control col-6" [(ngModel)]="member.country" name="country" />
+                        </div>
+                    </div>
+                </form>
+            </tab>
+            <tab heading="Edit photo">
+                <h4>Edit photo</h4>
+                <p>{{member.interests}}</p>
+            </tab>
+            <!-- <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActivated($event)"> -->
+
+        </tabset>
+    </div>
+</div>

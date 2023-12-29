@@ -7,6 +7,7 @@ import { MessagesComponent } from './Component/members/messages/messages.compone
 import { ListsComponent } from './Component/members/lists/lists.component';
 import { GuardGuard } from './_guard/-guard.guard';
 import { TestErrorComponent } from './error/test-error/test-error.component';
+import { MemberEditComponent } from './Component/members/member-edit/member-edit.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
         path: "member/:username",
         component: MemberDetailComponent,
         canActivate: [GuardGuard]
+      },
+      {
+        path: "members/edit",
+        component: MemberEditComponent,
       },
       {
         path: "list",

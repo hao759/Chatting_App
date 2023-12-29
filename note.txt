@@ -3,6 +3,9 @@ add System.IdentityModel.Token
 ng generate environments
 ng g interceptor jwt
 
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+npm install @kolkov/ngx-gallery --save
+
 public class TokenService : ITokenService
     {
         private SymmetricSecurityKey _key;
@@ -98,3 +101,12 @@ bỏ method GetAge ,tự hỉu trả về int là age
 
 
           .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CaculateAge()));
+          ======================Form============================
+
+          Reactive Forrm:
+<button form="editForm">Save 
+
+ <form #editForm="ngForm" id="editForm" (submit)="editMember()">
+<input [(ngModel)]="member.introduction" name="introduction"
+
+dựa vào name để bind từ ts qua html form

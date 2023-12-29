@@ -20,6 +20,8 @@ import { TestErrorComponent } from './error/test-error/test-error.component';
 import { MemberCardComponent } from './Component/members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptor/jwt.interceptor';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { MemberEditComponent } from './Component/members/member-edit/member-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     ListsComponent,
     MessagesComponent,
     TestErrorComponent,
-    MemberCardComponent
+    MemberCardComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     HttpClientModule,
     ModuleShareModule,
     BrowserAnimationsModule,
+    NgxGalleryModule,
     TabsModule.forRoot(),
   ],
   providers: [
