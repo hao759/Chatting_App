@@ -1,4 +1,5 @@
-﻿using API.Data;
+﻿using System.Security.Claims;
+using API.Data;
 using API.DTO;
 using API.Entities;
 using API.Interfaces;
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers
 {
     [ApiController]
-    // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
@@ -42,5 +43,19 @@ namespace API.Controllers
         // {
         //     return Ok(await _userRepositoty.GetUserByIdAsync(id));
         // }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateUser(MemberUpdateDTO memberDTO)
+        {
+            // var username = User.Identity.Name;
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _userRepositoty.GetUserByUsernameAsync(username);
+            if (user == null)
+                return NotFound();
+            mapper.Map(memberDTO, user);
+            if (await _userRepositoty.SaveAllAsync())
+                return NoContent();
+            return BadRequest("Update fail");
+        }
     }
 }
