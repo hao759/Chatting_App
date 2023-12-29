@@ -8,6 +8,7 @@ import { ListsComponent } from './Component/members/lists/lists.component';
 import { GuardGuard } from './_guard/-guard.guard';
 import { TestErrorComponent } from './error/test-error/test-error.component';
 import { MemberEditComponent } from './Component/members/member-edit/member-edit.component';
+import { PreventUnsaveGuard } from './_guard/prevent-unsave.guard';
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
       {
         path: "members/edit",
         component: MemberEditComponent,
+        canDeactivate: [PreventUnsaveGuard]
       },
       {
         path: "list",

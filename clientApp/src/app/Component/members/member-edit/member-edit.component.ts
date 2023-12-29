@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Host, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/_models/User';
@@ -14,6 +14,10 @@ import { MembersService } from 'src/app/_service/members.service';
 export class MemberEditComponent implements OnInit {
   member!: Member
   @ViewChild('editForm') editForm: NgForm | undefined
+  @HostListener("window:beforeunload", ['$event']) unloadNotification($event: any) {
+    if (this.editForm?.dirty)
+      $event.returnValue = true
+  }
   user: User | null = null
   constructor(private accountService: AccountService, private memberService: MembersService
     , private toastr: ToastrService) {
