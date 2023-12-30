@@ -110,3 +110,8 @@ bỏ method GetAge ,tự hỉu trả về int là age
 <input [(ngModel)]="member.introduction" name="introduction"
 
 dựa vào name để bind từ ts qua html form
+
+
+====================================CloudinaryDotNet=============================
+add class 3 property giong 3 pro trong appsetting
+ services.Configure<CloudinarySetting>(configuration.GetSection("CloudinarySetting"));
