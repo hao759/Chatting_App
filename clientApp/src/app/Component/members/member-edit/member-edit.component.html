@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-6">
                             <h4 for="city">City</h4>
-                            <input class="form-control col-6" [(ngModel)]="member.city" name="cit" />
+                            <input class="form-control col-6" [(ngModel)]="member.city" name="city" />
                         </div>
                         <div class="col-6">
                             <h4>Country</h4>
@@ -66,6 +66,7 @@
                     </div>
                 </form>
             </tab>
+            <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
             <tab heading="Edit photo">
                 <h4>Edit photo</h4>
                 <p>{{member.interests}}</p>

@@ -1,5 +1,6 @@
 import { Component, Host, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/_models/User';
 import { Member } from 'src/app/_models/member';
@@ -20,7 +21,7 @@ export class MemberEditComponent implements OnInit {
   }
   user: User | null = null
   constructor(private accountService: AccountService, private memberService: MembersService
-    , private toastr: ToastrService) {
+    , private toastr: ToastrService, private spinner: NgxSpinnerService) {
     this.accountService.currentUser.subscribe(data => {
       this.user = data
     })
@@ -37,7 +38,15 @@ export class MemberEditComponent implements OnInit {
     })
   }
   editMember() {
-    this.toastr.success("Update success full")
-    this.editForm?.reset(this.member)
+    this.memberService.updateMember(this.editForm?.value).subscribe(data => {
+      this.toastr.success("Update success full")
+      this.editForm?.reset(this.member)
+    },
+      err => console.error(err)
+    )
+
+
+
+
   }
 }

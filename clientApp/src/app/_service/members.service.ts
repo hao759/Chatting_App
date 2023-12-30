@@ -18,6 +18,10 @@ export class MembersService {
     return this.http.get<Member>(this.baseURL + "users/" + username)
   }
 
+  updateMember(member: Member) {
+    return this.http.put<Member>(this.baseURL + "users", member)
+  }
+
   // getHttpOption() {
   //   const userString = localStorage.getItem("user");
   //   if (!userString)
