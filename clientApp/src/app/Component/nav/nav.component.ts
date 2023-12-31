@@ -8,7 +8,7 @@ import { AccountService } from 'src/app/_service/account.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  // styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
   Model: any = {};
@@ -23,7 +23,7 @@ export class NavComponent {
   onSubmit() {
     this.accountService.login(this.Model).subscribe(data => {
       console.log(this.accountService.currentUser)
-      this.toastr.error('Dang nhap thanh cong', 'Error', {
+      this.toastr.success('Dang nhap thanh cong', 'Error', {
         timeOut: 3000,
       });
       this.route.navigateByUrl('/member')

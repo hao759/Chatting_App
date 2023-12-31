@@ -19,6 +19,7 @@
                 <li class="nav-item" *ngIf="(accountService.currentUser| async) as user">
                     <a class="nav-link active" routerLink='message' routerLinkActive="active"
                         aria-current="page">Message: {{user.userName}} </a>
+                    <img src="{{user.photoUrl}}" alt="123">
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" routerLink='members/edit' routerLinkActive="active"
