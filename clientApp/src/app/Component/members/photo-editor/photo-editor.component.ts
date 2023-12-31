@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
+import { Photo } from 'src/app/_models/Photo';
 import { User } from 'src/app/_models/User';
 import { Member } from 'src/app/_models/member';
 import { AccountService } from 'src/app/_service/account.service';
+import { MembersService } from 'src/app/_service/members.service';
 import { environment } from 'src/environments/environment.development';
-
 @Component({
   selector: 'app-photo-editor',
   templateUrl: './photo-editor.component.html',
@@ -17,7 +18,7 @@ export class PhotoEditorComponent {
   baseUrl = environment.baseURL;
   user: User | undefined;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private memberService: MembersService) {
     this.accountService.currentUser.subscribe(data => {
       if (data)
         this.user = data
@@ -46,6 +47,7 @@ export class PhotoEditorComponent {
       file.withCredentials = false;
     }
 
+
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
         const photo = JSON.parse(response);
@@ -57,6 +59,22 @@ export class PhotoEditorComponent {
         // }
       }
     }
+  }
+  setMainPhoto(photo: Photo) {
+    this.memberService.setMainPhoto(photo.id).subscribe({
+      next: _ => {
+        if (this.user && this.member) {
+          this.user.photoUrl = photo.url;
+          this.accountService.setCurrentUser(this.user);
+          this.member.photoUrl = photo.url;
+          console.log(photo.url)
+          this.member.photos.forEach(p => {
+            if (p.isMain) p.isMain = false;
+            if (p.id === photo.id) p.isMain = true;
+          })
+        }
+      }
+    })
   }
 
 }

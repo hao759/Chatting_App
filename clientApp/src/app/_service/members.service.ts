@@ -37,6 +37,10 @@ export class MembersService {
     )
   }
 
+  setMainPhoto(photoId: number) {
+    return this.http.put(this.baseURL + 'users/set_main_photo/' + photoId, {});
+  }
+
   // getHttpOption() {
   //   const userString = localStorage.getItem("user");
   //   if (!userString)

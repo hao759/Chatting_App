@@ -14,6 +14,6 @@ export class MemberCardComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    console.log(this.member)
+    console.log(this.member.photoUrl)
   }
 }
