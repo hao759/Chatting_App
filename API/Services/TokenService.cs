@@ -25,7 +25,7 @@ namespace API.Services
                 new Claim(JwtRegisteredClaimNames.NameId,appUser.Name)
             };
 
-            var creds=new SigningCredentials(_key,SecurityAlgorithms.HmacSha256Signature);
+            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature);
             var tokenDesciption = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
@@ -34,7 +34,7 @@ namespace API.Services
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var token=tokenHandler.CreateToken(tokenDesciption);
+            var token = tokenHandler.CreateToken(tokenDesciption);
             return tokenHandler.WriteToken(token);
         }
     }
