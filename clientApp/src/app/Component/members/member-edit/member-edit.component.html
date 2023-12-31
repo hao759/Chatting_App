@@ -68,8 +68,7 @@
             </tab>
             <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
             <tab heading="Edit photo">
-                <h4>Edit photo</h4>
-                <p>{{member.interests}}</p>
+                <app-photo-editor [member]="member"></app-photo-editor>
             </tab>
             <!-- <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActivated($event)"> -->
 
