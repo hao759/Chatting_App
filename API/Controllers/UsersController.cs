@@ -99,5 +99,23 @@ namespace API.Controllers
 
             return BadRequest("Problem");
         }
+        [HttpDelete("delete_photo/{photoID}")]
+        public async Task<ActionResult> Deletephoto(int photoID)
+        {
+            var user = await _userRepositoty.GetUserByUsernameAsync(User.GetUserName());
+            var photo = user.Photos.FirstOrDefault(s => s.Id == photoID);
+            if (photo == null)
+                return NotFound();
+            if (photo.IsMain)
+                return BadRequest("Day la anh main");
+            var result = await _photoService.DeletePhotoAsync(photo.PublicId);
+            if (result.Error != null)
+                return BadRequest(result.Error);
+            user.Photos.Remove(photo);
+            if (await _userRepositoty.SaveAllAsync())
+
+                return Ok();
+            return BadRequest("Problem Saving");
+        }
     }
 }

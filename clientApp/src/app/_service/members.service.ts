@@ -41,6 +41,10 @@ export class MembersService {
     return this.http.put(this.baseURL + 'users/set_main_photo/' + photoId, {});
   }
 
+  deletePhoto(photoId: number) {
+    return this.http.delete(this.baseURL + "users/delete_photo/" + photoId)
+  }
+
   // getHttpOption() {
   //   const userString = localStorage.getItem("user");
   //   if (!userString)
