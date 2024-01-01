@@ -11,7 +11,10 @@ import { AccountService } from 'src/app/_service/account.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  Model: any = {};
+  Model: any = {
+    name: "Paula",
+    password: "Pa$$w0rd"
+  };
   // public LoggedIn = false
   currentUser: Observable<User | null> = of(null)
 
@@ -23,10 +26,14 @@ export class NavComponent {
   onSubmit() {
     this.accountService.login(this.Model).subscribe(data => {
       console.log(this.accountService.currentUser)
-      this.toastr.success('Dang nhap thanh cong', 'Error', {
+      this.toastr.success('Đăng nhập thành công', 'Thông báo', {
         timeOut: 3000,
       });
       this.route.navigateByUrl('/member')
+    }, err => {
+      this.toastr.error('Mật khẩu sai', 'Thông báo', {
+        timeOut: 3000,
+      });
     });
 
   }

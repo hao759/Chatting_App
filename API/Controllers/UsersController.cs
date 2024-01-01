@@ -55,11 +55,11 @@ namespace API.Controllers
         }
 
         [HttpPost("add_photo")]
-        public async Task<ActionResult<PhotoDTO>> AddPhoto(IFormFile formFile)
+        public async Task<ActionResult<PhotoDTO>> AddPhoto(IFormFile file)
         {
             var user = await _userRepositoty.GetUserByUsernameAsync(User.GetUserName());
 
-            var result = await _photoService.AddPhotoAsync(formFile);
+            var result = await _photoService.AddPhotoAsync(file);
 
             if (result.Error != null) return BadRequest(result.Error.Message);
 
@@ -85,7 +85,6 @@ namespace API.Controllers
         {
             var user = await _userRepositoty.GetUserByUsernameAsync(User.GetUserName());
             if (user == null)
-
                 return NotFound();
             var photo = user.Photos.FirstOrDefault(s => s.Id == photoID);
             if (photo == null) return NotFound();
