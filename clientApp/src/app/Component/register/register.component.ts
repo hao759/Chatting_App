@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   inittialForm() {
     this.registerForm = new FormGroup({
       userName: new FormControl("hello", Validators.required),
-      password: new FormControl(),
+      password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', this.matchValues('password')),
     })
     this.registerForm.controls['password'].valueChanges.subscribe({

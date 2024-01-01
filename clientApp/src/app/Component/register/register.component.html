@@ -2,13 +2,22 @@
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
     <div class="mb-3">
-        <input class="form-control" type="text" formControlName="userName" placeholder="UserName">
+        <input class="form-control" type="text"
+            [class.is-invalid]="registerForm.get('userName')?.errors&& registerForm.get('userName')?.touched"
+            formControlName="userName" placeholder="UserName">
+        <div class="invalid-feedback">Please</div>
     </div>
     <div class="mb-3">
-        <input class="form-control" type="password" formControlName="password" placeholder="Password">
+        <input class="form-control" type="password"
+            [class.is-invalid]="registerForm.get('password')?.errors&& registerForm.get('password')?.touched"
+            formControlName="password" placeholder="Password">
+        <div class="invalid-feedback" *ngIf="registerForm.get('password')?.hasError('required')">Please</div>
     </div>
     <div class="mb-3">
-        <input class="form-control" type="password" formControlName="confirmPassword" placeholder="ConfirmPassword">
+        <input class="form-control" type="password"
+            [class.is-invalid]="registerForm.get('confirmPassword')?.errors&& registerForm.get('confirmPassword')?.touched"
+            formControlName="confirmPassword" placeholder="ConfirmPassword">
+        <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword')?.hasError('isMatching')">Please</div>
     </div>
 
     <div class="form-group text-center">
