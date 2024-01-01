@@ -1,24 +1,17 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()">
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
-    <div class="mb-3">
+    <!-- <div class="mb-3">
         <input class="form-control" type="text"
             [class.is-invalid]="registerForm.get('userName')?.errors&& registerForm.get('userName')?.touched"
             formControlName="userName" placeholder="UserName">
         <div class="invalid-feedback">Please</div>
-    </div>
-    <div class="mb-3">
-        <input class="form-control" type="password"
-            [class.is-invalid]="registerForm.get('password')?.errors&& registerForm.get('password')?.touched"
-            formControlName="password" placeholder="Password">
-        <div class="invalid-feedback" *ngIf="registerForm.get('password')?.hasError('required')">Please</div>
-    </div>
-    <div class="mb-3">
-        <input class="form-control" type="password"
-            [class.is-invalid]="registerForm.get('confirmPassword')?.errors&& registerForm.get('confirmPassword')?.touched"
-            formControlName="confirmPassword" placeholder="ConfirmPassword">
-        <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword')?.hasError('isMatching')">Please</div>
-    </div>
+    </div> -->
+    <app-text-input [formControl]="$any(registerForm.controls['userName'])" [label]="'Username'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Password'"
+        [type]="'password'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'Confirm Password'"
+        [type]="'password'"></app-text-input>
 
     <div class="form-group text-center">
         <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Register</button>
@@ -27,38 +20,4 @@
 
     {{registerForm.value |json}}
     {{registerForm.valid |json}}
-    <!-- <div class="mb-3">
-        <label style="margin-right: 10px;">I am a: </label>
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" value="male" formControlName="gender"> Male
-        </label>
-        <label class="form-check-label">
-            <input class="form-check-input ms-3" type="radio" value="female" formControlName="gender"> Female
-        </label>
-    </div> -->
-
-    <!-- <app-text-input [formControl]="$any(registerForm.controls['userName'])" [label]="'userName'"></app-text-input>
-    <app-text-input [formControl]="$any(registerForm.controls['knownAs'])" [label]="'Known as'"></app-text-input>
-    <app-date-picker [formControl]="$any(registerForm.controls['dateOfBirth'])" [label]="'Date of birth'"
-        [maxDate]="maxDate"></app-date-picker>
-    <app-text-input [formControl]="$any(registerForm.controls['city'])" [label]="'City'"></app-text-input>
-    <app-text-input [formControl]="$any(registerForm.controls['country'])" [label]="'Country'"></app-text-input>
-    <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Password'"
-        [type]="'password'"></app-text-input>
-    <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'Confirm Password'"
-        [type]="'password'"></app-text-input>
-
-    <div class="row" *ngIf="validationErrors">
-        <ul class="text-danger">
-            <li *ngFor="let error of validationErrors">
-                {{error}}
-            </li>
-        </ul>
-    </div>
-
-
-    <div class="form-group text-center">
-        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Register</button>
-        <button class="btn btn-default me-2" (click)="cancel()" type="button">Cancel</button>
-    </div> -->
 </form>
