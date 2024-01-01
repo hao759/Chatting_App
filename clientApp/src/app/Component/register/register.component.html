@@ -1,20 +1,23 @@
-<form #registFomr="ngForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
     <div class="mb-3">
-        <input type="text" name="userName" [(ngModel)]="model.userName" placeholder="userName">
+        <input class="form-control" type="text" formControlName="userName" placeholder="UserName">
     </div>
     <div class="mb-3">
-        <input type="password" name="password" [(ngModel)]="model.password" placeholder="password">
+        <input class="form-control" type="password" formControlName="password" placeholder="Password">
     </div>
     <div class="mb-3">
-        <button class="text-center" type="submit">Register</button>
+        <input class="form-control" type="password" formControlName="confirmPassword" placeholder="ConfirmPassword">
     </div>
-    <div class="mb-3">
-        <button class="text-center" type="button" (click)="cancel()">Cancel</button>
+
+    <div class="form-group text-center">
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Register</button>
+        <button class="btn btn-default me-2" (click)="cancel()" type="button">Cancel</button>
     </div>
-    <div *ngFor="let item of userFromParent">
-        {{item.name}}</div>
+
+    {{registerForm.value |json}}
+    {{registerForm.valid |json}}
     <!-- <div class="mb-3">
         <label style="margin-right: 10px;">I am a: </label>
         <label class="form-check-label">

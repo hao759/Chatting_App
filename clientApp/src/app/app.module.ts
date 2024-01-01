@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { NavComponent } from './Component/nav/nav.component'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from './_service/account.service';
 import { HomeComponent } from './Component/home/home/home.component';
 import { RegisterComponent } from './Component/register/register.component';
@@ -49,6 +49,7 @@ import { FileSelectDirective, FileUploadModule } from 'ng2-file-upload';
     ModuleShareModule,
     BrowserAnimationsModule,
     NgxGalleryModule,
+    ReactiveFormsModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     TabsModule.forRoot(),
   ],
