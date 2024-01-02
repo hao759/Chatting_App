@@ -52,11 +52,11 @@ export class PhotoEditorComponent {
       if (response) {
         const photo = JSON.parse(response);
         this.member?.photos.push(photo);
-        // if (photo.isMain && this.user && this.member) {
-        //   this.user.pho = photo.url;
-        //   this.member.photos = photo.url;
-        //   this.accountService.setCurrentUser(this.user);
-        // }
+        if (photo.isMain && this.user && this.member) {
+          this.user.photoUrl = photo.url;
+          this.member.photos = photo.url;
+          this.accountService.setCurrentUser(this.user);
+        }
       }
     }
   }
