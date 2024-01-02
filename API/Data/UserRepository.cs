@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTO;
 using API.Entities;
+using API.Helper;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -48,11 +49,13 @@ namespace API.Data
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<List<MemberDTO>> GetMembersAsync()
+        public async Task<PagedList<MemberDTO>> GetMembersAsync(UserParams userParams)
         {
-            return await _context.appUsers
+            var query = _context.appUsers
           .ProjectTo<MemberDTO>(Mapper.ConfigurationProvider)
-          .ToListAsync();
+          .AsNoTracking();
+            //   .ToListAsync();
+            return await PagedList<MemberDTO>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<MemberDTO> GetMemberAsync(string username)
