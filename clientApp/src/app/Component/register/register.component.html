@@ -1,5 +1,16 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()">
     <h2 class="text-center text-primary">Sign up</h2>
+
+    <div class="mb-3">
+        <label style="margin-right: 10px;">I am a: </label>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" value="male" formControlName="gender"> Male
+        </label>
+        <label class="form-check-label">
+            <input class="form-check-input ms-3" type="radio" value="female" formControlName="gender"> Female
+        </label>
+    </div>
+
     <hr>
     <!-- <div class="mb-3">
         <input class="form-control" type="text"
@@ -7,7 +18,12 @@
             formControlName="userName" placeholder="UserName">
         <div class="invalid-feedback">Please</div>
     </div> -->
-    <app-text-input [formControl]="$any(registerForm.controls['userName'])" [label]="'Username'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['username'])" [label]="'Username'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['knownAs'])" [label]="'Known as'"></app-text-input>
+    <app-data-picker [formControl]="$any(registerForm.controls['dateOfBirth'])" [label]="'Date of birth'"
+        [maxDate]="maxDate"></app-data-picker>
+    <app-text-input [formControl]="$any(registerForm.controls['city'])" [label]="'City'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['country'])" [label]="'Country'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Password'"
         [type]="'password'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'Confirm Password'"

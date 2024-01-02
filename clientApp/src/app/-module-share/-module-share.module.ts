@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     CommonModule,
     FormsModule,
+    BsDatepickerModule.forRoot(),
     ToastrModule.forRoot(
       {
         timeOut: 4000,
@@ -18,7 +19,10 @@ import { ToastrModule } from 'ngx-toastr';
       }
     ),
   ],
-  exports: [FormsModule,
-    ToastrModule]
+  exports: [
+    FormsModule,
+    ToastrModule,
+    BsDatepickerModule,
+  ]
 })
 export class ModuleShareModule { }

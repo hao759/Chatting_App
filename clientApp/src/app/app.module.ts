@@ -27,6 +27,7 @@ import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 import { PhotoEditorComponent } from './Component/members/photo-editor/photo-editor.component';
 import { FileSelectDirective, FileUploadModule } from 'ng2-file-upload';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { DataPickerComponent } from './_forms/data-picker/data-picker.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
     MemberEditComponent,
     PhotoEditorComponent,
     TextInputComponent,
+    DataPickerComponent,
   ],
   imports: [
     FileUploadModule,
