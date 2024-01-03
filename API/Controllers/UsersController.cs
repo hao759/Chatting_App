@@ -29,6 +29,13 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<PagedList<MemberDTO>>> GetUsers([FromQuery] UserParams userParams)//caan FromQuery
         {
+            var currentUser = await _userRepositoty.GetUserByUsernameAsync(User.GetUserName());
+            userParams.CurrentUserName = currentUser.Name;
+
+            if (string.IsNullOrEmpty(userParams.Gender))
+                userParams.Gender = currentUser.Gender == "male" ? "female" : "male";
+
+
             var users = await _userRepositoty.GetMembersAsync(userParams);
             Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize,
             users.TotalCount, users.TotalPages));

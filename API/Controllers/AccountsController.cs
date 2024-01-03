@@ -53,7 +53,8 @@ namespace API.Controllers
                 UserName = login.Name,
                 Token = _tokenService.CreateToken(user),
                 PhotoUrl = user.Photos.FirstOrDefault(s => s.IsMain == true)?.Url,
-                // KnownAs = user.KnownAs
+                KnownAs = user.KnownAs,
+                Gender = user.Gender,
             };
         }
 
