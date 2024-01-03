@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [],
@@ -18,11 +18,13 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
         preventDuplicates: true,
       }
     ),
+    PaginationModule.forRoot(),
   ],
   exports: [
     FormsModule,
     ToastrModule,
     BsDatepickerModule,
+    PaginationModule,
   ]
 })
 export class ModuleShareModule { }
