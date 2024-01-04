@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
   declarations: [],
@@ -18,6 +19,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
         preventDuplicates: true,
       }
     ),
+    ButtonsModule.forRoot(),
     PaginationModule.forRoot(),
   ],
   exports: [
@@ -25,6 +27,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     ToastrModule,
     BsDatepickerModule,
     PaginationModule,
+    ButtonsModule,
   ]
 })
 export class ModuleShareModule { }

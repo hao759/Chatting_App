@@ -16,10 +16,10 @@ namespace API.Helper
 
             if (!resultContext.HttpContext.User.Identity.IsAuthenticated) return;
 
-            var username = resultContext.HttpContext.User.GetUserName();
+            var userId = resultContext.HttpContext.User.GetUserID();
 
             var repo = resultContext.HttpContext.RequestServices.GetRequiredService<IUserRepositoty>();
-            var user = await repo.GetUserByUsernameAsync(username);
+            var user = await repo.GetUserByIdAsync(int.Parse(userId));
 
 
             // var uow = resultContext.HttpContext.RequestServices.GetRequiredService<IUnitOfWork>();
