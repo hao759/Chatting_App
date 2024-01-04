@@ -115,3 +115,6 @@ dựa vào name để bind từ ts qua html form
 ====================================CloudinaryDotNet=============================
 add class 3 property giong 3 pro trong appsetting
  services.Configure<CloudinarySetting>(configuration.GetSection("CloudinarySetting"));
+
+ =====================================img vs text ngang nhau=============
+d-flex align-items-center justify-content-center cursor-pointer
