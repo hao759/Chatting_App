@@ -5,6 +5,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TimeagoModule } from 'ngx-timeago';
 
 @NgModule({
   declarations: [],
@@ -21,6 +22,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     ),
     ButtonsModule.forRoot(),
     PaginationModule.forRoot(),
+    TimeagoModule.forRoot(),
   ],
   exports: [
     FormsModule,
@@ -28,6 +30,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     BsDatepickerModule,
     PaginationModule,
     ButtonsModule,
+    TimeagoModule,
   ]
 })
 export class ModuleShareModule { }
