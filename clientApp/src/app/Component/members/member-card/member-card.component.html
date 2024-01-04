@@ -3,8 +3,8 @@
         <img src="{{member.photoUrl}}" alt="{{member.knownAs}}" class="card-img-top">
         <ul class="list-inline member-icons animate text-center">
             <li class="list-inline-item">
-                <button routerLink="/member/{{member.name}}" class="btn btn-primary"><i
-                        class="fa fa-user">FaFB</i></button>
+                <button routerLink="/member/{{member.name}}" class="btn btn-primary"><i class="fa fa-user">Age:
+                        {{member.age}}</i></button>
             </li>
             <!-- <li class="list-inline-item">
                 <button (click)="addLike(member)" class="btn btn-primary"><i class="fa fa-heart"></i></button>
@@ -12,7 +12,7 @@
             <li class="list-inline-item">
                 <button routerLink="/member/{{member.name}}" class="btn btn-primary">
                     <!--  [queryParams]="{tab: 'Messages'}" -->
-                    <i class="fa fa-envelope">save</i>
+                    <i class="fa fa-envelope"> {{member.name}}</i>
                 </button>
             </li>
         </ul>
