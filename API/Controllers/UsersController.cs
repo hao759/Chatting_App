@@ -12,10 +12,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController]
+    // [ApiController]
     [Authorize]
-    [Route("api/[controller]")]
-    public class UsersController : Controller
+    // [Route("api/[controller]")]
+    public class UsersController : BaseController
     {
         public IUserRepositoty _userRepositoty;
         private readonly IMapper mapper;
