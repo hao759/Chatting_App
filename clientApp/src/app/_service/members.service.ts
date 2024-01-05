@@ -106,6 +106,18 @@ export class MembersService {
     return this.http.delete(this.baseURL + "users/delete_photo/" + photoId)
   }
 
+  addLike(username: string) {
+    return this.http.post(this.baseURL + 'likes/' + username, {})
+  }
+  getLikes(predicate: string) {
+    return this.http.get(this.baseURL + 'likes?predicate=' + predicate)
+  }
+  // getLikes(predicate: string, pageNumber: number, pageSize: number) {
+  //   let params = this.getPaginationHeader(pageNumber, pageSize);
+  //   params = params.append('predicate', predicate);
+  //   return getPaginatedResult<Member[]>(this.baseUrl + 'likes', params, this.http);
+  // }
+
   // getHttpOption() {
   //   const userString = localStorage.getItem("user");
   //   if (!userString)
