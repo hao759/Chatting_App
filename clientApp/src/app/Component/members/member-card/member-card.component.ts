@@ -17,7 +17,7 @@ export class MemberCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.member.photoUrl)
+    // console.log(this.member.photoUrl)
   }
 
   addLike(member: Member) {
