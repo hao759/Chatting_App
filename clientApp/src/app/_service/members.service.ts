@@ -49,7 +49,11 @@ export class MembersService {
     const response = this.memberCache.get(Object.values(userParams).join('-'));
     if (response) return of(response);
     // if (this.members.length > 0)
-    let params = this.getPaginationHeader(userParams);
+    let params = this.getPaginationHeader(userParams.pageNumber, userParams.pageSize);
+    params = params.append('minAge', userParams.minAge);
+    params = params.append('maxAge', userParams.maxAge);
+    params = params.append('gender', userParams.gender);
+    params = params.append('orderBy', userParams.orderBy);
     return this.getPaginateResult<Member[]>(this.baseURL + "users", params).pipe(
       map(response => {
         this.memberCache.set(Object.values(userParams).join('-'), response);
@@ -70,14 +74,10 @@ export class MembersService {
     }));
   }
 
-  private getPaginationHeader(userParams: UserParams) {
+  private getPaginationHeader(pageNumber: number, pageSize: number) {
     let params = new HttpParams();
-    params = params.append('pageNumber', userParams.pageNumber);
-    params = params.append('pageSize', userParams.pageSize);
-    params = params.append('minAge', userParams.minAge);
-    params = params.append('maxAge', userParams.maxAge);
-    params = params.append('gender', userParams.gender);
-    params = params.append('orderBy', userParams.orderBy);
+    params = params.append('pageNumber', pageNumber);
+    params = params.append('pageSize', pageSize);
     return params;
   }
 
@@ -97,6 +97,11 @@ export class MembersService {
       })
     )
   }
+  getLikes(predicate: string, pageNumber: number, pageSize: number) {
+    let params = this.getPaginationHeader(pageNumber, pageSize);
+    params = params.append('predicate', predicate);
+    return this.getPaginateResult<Member[]>(this.baseURL + 'likes', params);
+  }
 
   setMainPhoto(photoId: number) {
     return this.http.put(this.baseURL + 'users/set_main_photo/' + photoId, {});
@@ -109,14 +114,8 @@ export class MembersService {
   addLike(username: string) {
     return this.http.post(this.baseURL + 'likes/' + username, {})
   }
-  getLikes(predicate: string) {
-    return this.http.get<Member[]>(this.baseURL + 'likes?predicate=' + predicate)
-  }
-  // getLikes(predicate: string, pageNumber: number, pageSize: number) {
-  //   let params = this.getPaginationHeader(pageNumber, pageSize);
-  //   params = params.append('predicate', predicate);
-  //   return getPaginatedResult<Member[]>(this.baseUrl + 'likes', params, this.http);
-  // }
+
+
 
   // getHttpOption() {
   //   const userString = localStorage.getItem("user");
