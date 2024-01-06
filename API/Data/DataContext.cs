@@ -41,15 +41,15 @@ namespace API.Data
                 .HasForeignKey(s => s.TargetUserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            // builder.Entity<Message>()
-            //         .HasOne(u => u.Recipient)
-            //         .WithMany(m => m.MessagesReceived)
-            //         .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Message>()
+                    .HasOne(u => u.Recipient)
+                    .WithMany(m => m.MessagesReceived)
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            // builder.Entity<Message>()
-            //     .HasOne(u => u.Sender)
-            //     .WithMany(m => m.MessagesSent)
-            //     .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Message>()
+                .HasOne(u => u.Sender)
+                .WithMany(m => m.MessagesSent)
+                .OnDelete(DeleteBehavior.Restrict);
         }
         protected override void ConfigureConventions(ModelConfigurationBuilder builder)
         {
@@ -68,6 +68,7 @@ namespace API.Data
 
         public DbSet<AppUser> appUsers { get; set; }
         public DbSet<UserLike> userLikes { get; set; }
+        public DbSet<Message> Message { get; set; }
     }
 }
 

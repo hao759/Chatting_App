@@ -19,7 +19,7 @@ namespace API.Helper
             var userId = resultContext.HttpContext.User.GetUserID();
 
             var repo = resultContext.HttpContext.RequestServices.GetRequiredService<IUserRepositoty>();
-            var user = await repo.GetUserByIdAsync(int.Parse(userId));
+            var user = await repo.GetUserByIdAsync(userId);
 
 
             // var uow = resultContext.HttpContext.RequestServices.GetRequiredService<IUnitOfWork>();

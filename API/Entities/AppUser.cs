@@ -29,8 +29,8 @@ namespace API.Entities
         //     return DateOfBirth.CaculateAge();
         // }
 
-        // public List<Message> MessagesSent { get; set; }
-        // public List<Message> MessagesReceived { get; set; }
+        public List<Message> MessagesSent { get; set; }
+        public List<Message> MessagesReceived { get; set; }
         // public ICollection<AppUserRole> UserRoles { get; set; }
     }
 
