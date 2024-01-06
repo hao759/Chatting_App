@@ -48,9 +48,13 @@ namespace API.Controllers
             return BadRequest("Failed to like user");
         }
         [HttpGet]
-        public async Task<ActionResult<PagedList<LikeDTO>>> GetUserLikes(LikesParams likesParams)
+        public async Task<ActionResult<PagedList<LikeDTO>>> GetUserLikes(string predicate)
         {
-            likesParams.UserId = User.GetUserID();
+            var likesParams = new LikesParams
+            {
+                UserId = User.GetUserID(),
+                Predicate = predicate
+            };
             var users = await likesRepository.GetUserLikes(likesParams);
 
             Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize,

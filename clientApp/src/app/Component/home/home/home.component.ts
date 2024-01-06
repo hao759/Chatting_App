@@ -7,11 +7,8 @@ import { Component, Input } from '@angular/core';
   // styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
   registerMode = false
   listuser: any = []
-
-
 
   constructor(private http: HttpClient) {
     this.getUser()
@@ -19,7 +16,6 @@ export class HomeComponent {
 
   getUser() {
     this.http.get('http://localhost:5225/api/users').subscribe(data => {
-      console.log(data)
       this.listuser = data;
     }, error => console.log("123"))
   }
@@ -30,7 +26,5 @@ export class HomeComponent {
   cancelRegis($event: boolean) {
     this.registerMode = $event
   }
-
-
 
 }

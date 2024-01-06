@@ -15,7 +15,6 @@ export class NavComponent {
     name: "Paula",
     password: "Pa$$w0rd"
   };
-  // public LoggedIn = false
   currentUser: Observable<User | null> = of(null)
 
 
@@ -41,10 +40,4 @@ export class NavComponent {
     this.accountService.logout()
     this.route.navigateByUrl('/')
   }
-  // getCurrentUser() {
-  //   this.accountService.currentUser.subscribe({
-  //     next: User => this.LoggedIn = !!User,
-  //     error: error => console.log(error)
-  //   })
-  // }
 }

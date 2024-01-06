@@ -9,14 +9,9 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class BaseController : Controller
     {
-
         private DataContext _context { get; set; }
         public BaseController()
         {
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
     }
 }

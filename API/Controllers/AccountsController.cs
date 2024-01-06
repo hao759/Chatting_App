@@ -36,7 +36,7 @@ namespace API.Controllers
             return Ok(user);
         }
 
-        [HttpPost("login")] //api/control/regis 
+        [HttpPost("login")]
         public async Task<ActionResult<UserDTO>> Login(LoginDTO login)
         {
             var user = await _context.appUsers.Include(s => s.Photos)

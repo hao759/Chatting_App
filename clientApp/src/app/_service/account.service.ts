@@ -12,7 +12,6 @@ export class AccountService {
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser = this.currentUserSource.asObservable()
 
-
   constructor(private http: HttpClient) { }
   login(model: any): Observable<any> {
     return this.http.post<any>(this.baseURL + 'accounts/login', model).pipe(map((res: User) => {

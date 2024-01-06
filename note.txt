@@ -118,3 +118,8 @@ add class 3 property giong 3 pro trong appsetting
 
  =====================================img vs text ngang nhau=============
 d-flex align-items-center justify-content-center cursor-pointer
+==================================================================
+Client : PaginatedResult   có 1 4 thuộc tính    2 result
+gọi :  add HttpParams vô param
+chạy nhận res gán về body, đọc header gán pagination
+
