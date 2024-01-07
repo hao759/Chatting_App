@@ -18,7 +18,10 @@ export class ListsComponent {
   constructor(private memberService: MembersService) {
     // this.userParams = this.memberService.getUserParams();
   }
+  ngOnInit(): void {
+    this.loadLikes()
 
+  }
   loadLikes() {
     this.memberService.getLikes(this.predicate, this.pageNumber, this.pageSize).subscribe({
       next: res => {

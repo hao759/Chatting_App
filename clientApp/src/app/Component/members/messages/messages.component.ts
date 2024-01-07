@@ -15,7 +15,11 @@ export class MessagesComponent {
   pageNumber = 1;
   pageSize = 5;
   loading = false;
+
   constructor(private messageService: MessageServiceService) { }
+  ngOnInit(): void {
+    this.loadMessages()
+  }
 
   loadMessages() {
     this.loading = true;

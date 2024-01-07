@@ -28,6 +28,8 @@ import { PhotoEditorComponent } from './Component/members/photo-editor/photo-edi
 import { FileSelectDirective, FileUploadModule } from 'ng2-file-upload';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DataPickerComponent } from './_forms/data-picker/data-picker.component';
+
+import { MembermessageComponent } from './Component/members/membermessage/membermessage.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,7 @@ import { DataPickerComponent } from './_forms/data-picker/data-picker.component'
     PhotoEditorComponent,
     TextInputComponent,
     DataPickerComponent,
+    MembermessageComponent,
   ],
   imports: [
     FileUploadModule,

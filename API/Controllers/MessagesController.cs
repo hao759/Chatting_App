@@ -52,7 +52,6 @@ namespace API.Controllers
 
             if (await UserRepositoty.SaveAllAsync())
                 return Ok(mapper.Map<MessageDto>(message));
-
             return BadRequest("Failed to send message");
         }
 
@@ -60,16 +59,10 @@ namespace API.Controllers
         public async Task<ActionResult<PagedList<MessageDto>>> GetMessagesForUser([FromQuery] MessageParams messageParams)
         {
             messageParams.Username = User.GetUserName();
-            // var messageParams = new MessageParams
-            // {
-            //     Username = User.GetUserName()
-            // };
-
             var messages = await messageRepository.GetMessagesForUser(messageParams);
 
             Response.AddPaginationHeader(new PaginationHeader(messages.CurrentPage,
                 messages.PageSize, messages.TotalCount, messages.TotalPages));
-
             return messages;
         }
         [HttpGet("thread/{username}")]

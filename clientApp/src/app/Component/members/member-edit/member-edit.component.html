@@ -70,6 +70,10 @@
             <tab heading="Edit photo">
                 <app-photo-editor [member]="member"></app-photo-editor>
             </tab>
+            <tab heading="Messages">
+                <!-- (selectTab)="onTabActivated($event)"   *ngIf="photoTab.active"-->
+                <app-membermessage [username]="member.name"></app-membermessage>
+            </tab>
             <!-- <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActivated($event)"> -->
 
         </tabset>

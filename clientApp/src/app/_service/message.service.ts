@@ -1,6 +1,6 @@
 
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { getPaginatedResult, getPaginationHeaders } from './PaginationHelper';
 import { Message } from '../_models/message';
@@ -19,6 +19,9 @@ export class MessageServiceService {
     params = params.append('Container', container);
     params = params.append('Username', "123");
     return getPaginatedResult<Message[]>(this.baseUrl + 'messages', params, this.http);
+  }
+  getMessageThread(username: string) {
+    return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + "morgan");
   }
 
   // deleteMessage(id: number) {
