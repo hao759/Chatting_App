@@ -18,7 +18,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     this.bustSpin.busy()
     console.log("Run loading Service")
     return next.handle(request).pipe(
-      delay(1000),
+      delay(2000),
       finalize(() => {
         this.bustSpin.idle()
       })

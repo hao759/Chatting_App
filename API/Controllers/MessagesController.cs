@@ -60,6 +60,10 @@ namespace API.Controllers
         public async Task<ActionResult<PagedList<MessageDto>>> GetMessagesForUser([FromQuery] MessageParams messageParams)
         {
             messageParams.Username = User.GetUserName();
+            // var messageParams = new MessageParams
+            // {
+            //     Username = User.GetUserName()
+            // };
 
             var messages = await messageRepository.GetMessagesForUser(messageParams);
 
