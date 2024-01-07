@@ -34,26 +34,22 @@
     </div>
     <div class="col-8">
         <tabset class="member-tabset" #memberTabs>
-            <!-- <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)"> -->
-            <tab heading="About {{member.knownAs}}">
+            <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)">
                 <h4>Description</h4>
                 <p>{{member.introduction}}</p>
                 <h4>Looking for</h4>
                 <p>{{member.lookingFor}}</p>
             </tab>
-            <!-- <tab heading="Interests" (selectTab)="onTabActivated($event)"> -->
-            <tab heading="Interests">
+            <tab heading="Interests" (selectTab)="onTabActivated($event)">
                 <h4>Interests</h4>
                 <p>{{member.interests}}</p>
             </tab>
-            <!-- <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActivated($event)"> -->
-            <tab heading="Photos" #photoTab="tab">
-                <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="gallery"></ngx-gallery> -->
+            <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActivated($event)">
                 <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
             </tab>
-            <!-- <tab heading="Messages" (selectTab)="onTabActivated($event)"         *ngIf="photoTab.active">
-                <app-member-messages [username]="member.userName"></app-member-messages>
-            </tab> -->
+            <tab heading="Messages" (selectTab)="onTabActivated($event)">
+                <app-membermessage [message]="messages" [username]="member.name"></app-membermessage>
+            </tab>
         </tabset>
     </div>
 </div>
