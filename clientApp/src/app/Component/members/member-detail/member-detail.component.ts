@@ -27,8 +27,10 @@ export class MemberDetailComponent implements OnInit {
   constructor(private memberService: MembersService, private _ActivatedRoute: ActivatedRoute,
     private messageService: MessageServiceService, private route: ActivatedRoute) { }
   ngOnInit(): void {
-    this.loadMember()
-
+    // this.loadMember()
+    this.route.data.subscribe({
+      next: data => this.member = data['member']
+    })
     this.route.queryParams.subscribe({
       next: params => {
         params['tab'] && this.selectTab(params['tab'])

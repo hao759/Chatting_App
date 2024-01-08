@@ -9,6 +9,7 @@ import { GuardGuard } from './_guard/-guard.guard';
 import { TestErrorComponent } from './error/test-error/test-error.component';
 import { MemberEditComponent } from './Component/members/member-edit/member-edit.component';
 import { PreventUnsaveGuard } from './_guard/prevent-unsave.guard';
+import { MemberDetailedResolver } from './_resolves/member-detailed.resolver';
 
 const routes: Routes = [
   {
@@ -28,7 +29,8 @@ const routes: Routes = [
       {
         path: "member/:username",
         component: MemberDetailComponent,
-        canActivate: [GuardGuard]
+        canActivate: [GuardGuard],
+        resolve: { member: MemberDetailedResolver }
       },
       {
         path: "members/edit",
