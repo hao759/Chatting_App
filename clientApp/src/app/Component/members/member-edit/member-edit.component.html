@@ -3,8 +3,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <h3>Your Profile :</h3>
-                <!-- </div>
-            <div class="col-8"> -->
+
                 <div *ngIf="editForm.dirty" class="alert alert-info">
                     <h5><strong>Information will biến mất</strong></h5>
                 </div>
@@ -40,6 +39,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-8">
         <tabset class="member-tabset" #memberTabs>
             <!-- <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)"> -->
@@ -75,7 +75,7 @@
                 <app-membermessage [username]="member.name"></app-membermessage>
             </tab>
             <!-- <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActivated($event)"> -->
-
         </tabset>
     </div>
 </div>
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
