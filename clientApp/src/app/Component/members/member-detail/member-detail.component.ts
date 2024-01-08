@@ -27,7 +27,6 @@ export class MemberDetailComponent implements OnInit {
   constructor(private memberService: MembersService, private _ActivatedRoute: ActivatedRoute,
     private messageService: MessageServiceService, private route: ActivatedRoute) { }
   ngOnInit(): void {
-    // this.loadMember()
     this.route.data.subscribe({
       next: data => this.member = data['member']
     })
@@ -36,7 +35,7 @@ export class MemberDetailComponent implements OnInit {
         params['tab'] && this.selectTab(params['tab'])
       }
     })
-
+    this.loadMessages();
     this.galleryOptions = [
       {
         width: '600px',
@@ -96,11 +95,11 @@ export class MemberDetailComponent implements OnInit {
         next: messages => this.messages = messages//ko thay mess
       })
   }
-  loadMember() {
-    this.memberService.getMember(this._ActivatedRoute.snapshot.params['username']).subscribe(data => {
-      this.member = data;
-      this.galleryImages = this.getImage()
-    })
-  }
+  // loadMember() {
+  //   this.memberService.getMember(this._ActivatedRoute.snapshot.params['username']).subscribe(data => {
+  //     this.member = data;
+  //     this.galleryImages = this.getImage()
+  //   })
+  // }
 
 }
