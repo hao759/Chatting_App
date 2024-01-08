@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.Entities;
 using API.Helper;
 using API.Interfaces;
 using API.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
@@ -14,6 +16,15 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServiceExtension(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddIdentityCore<AppUser>(opt =>
+       {
+           opt.Password.RequireNonAlphanumeric = false;
+       })
+           .AddRoles<AppRole>()
+           .AddRoleManager<RoleManager<AppRole>>()
+           .AddEntityFrameworkStores<DataContext>();
+
+
             services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
             services.AddDbContext<DataContext>(opt =>

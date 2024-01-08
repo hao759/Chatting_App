@@ -14,7 +14,7 @@ namespace API.Data
     {
         public static async Task SeedUsers(DataContext context)
         {
-            if (await context.appUsers.AnyAsync()) return;
+            // if (await context.appUsers.AnyAsync()) return;
             var userData = await File.ReadAllTextAsync("Data/UserSeedData.json");
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
@@ -22,7 +22,7 @@ namespace API.Data
             {
                 user.Name = user.Name.ToLower();
 
-                context.appUsers.Add(user);
+                // context..Add(user);
             }
             await context.SaveChangesAsync();
 
