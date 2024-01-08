@@ -28,9 +28,7 @@ export class MessageServiceService {
 
   }
 
-  // deleteMessage(id: number) {
-  //   this.messageService.deleteMessage(id).subscribe({
-  //     next: _ => this.messages?.splice(this.messages.findIndex(m => m.id === id), 1)
-  //   })
-  // }
+  deleteMessage(id: number) {
+    return this.http.delete(this.baseUrl + 'messages/' + id);
+  }
 }

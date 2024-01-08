@@ -63,9 +63,9 @@ namespace API.Data
             var query = await _context.Message
            .Include(s => s.Sender).ThenInclude(s => s.Photos)
            .Include(s => s.Recipient).ThenInclude(s => s.Photos)
-           .Where(s => s.RecipientUsername == currentUserName
+           .Where(s => s.RecipientUsername == currentUserName && s.RecipientDeleted == false
            && s.SenderUsername == recipientUserName
-           || s.RecipientUsername == recipientUserName
+           || s.RecipientUsername == recipientUserName && s.SenderDeleted == false
            && s.SenderUsername == currentUserName).OrderBy(m => m.MessageSent)
            .ToListAsync();
 

@@ -27,7 +27,7 @@ export class MessagesComponent {
       next: response => {
         this.messages = response.result;
         this.pagination = response.pagination;
-        // this.loading = false;
+        this.loading = false;
       }, error: err => console.log(err)
     })
   }
@@ -36,6 +36,12 @@ export class MessagesComponent {
       this.pageNumber = event.page;
       this.loadMessages();
     }
+  }
+
+  deleteMessage(id: number) {
+    this.messageService.deleteMessage(id).subscribe({
+      next: _ => this.messages?.splice(this.messages.findIndex(m => m.id === id), 1)
+    })
   }
 
 }
