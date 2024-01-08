@@ -26,11 +26,7 @@ namespace API.Controllers
         {
             var user = _mapper.Map<AppUser>(registerDto);
 
-            var hmac = new HMACSHA512();
-
             user.Name = registerDto.Username;
-            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
-            user.PasswordSalt = hmac.Key;
             _context.appUsers.Add(user);
             await _context.SaveChangesAsync();
             return Ok(user);
@@ -43,11 +39,7 @@ namespace API.Controllers
             .FirstOrDefaultAsync(s => s.Name == login.Name);
             if (user == null)
                 return Unauthorized();
-            using var hmac = new HMACSHA512(user.PasswordSalt);
-            var ComputeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(login.password));
-            for (int i = 0; i < ComputeHash.Length; i++)
-                if (ComputeHash[i] != user.PasswordHash[i])
-                    return Unauthorized("Sai pass");
+
             return new UserDTO
             {
                 UserName = login.Name,
