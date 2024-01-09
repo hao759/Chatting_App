@@ -1,9 +1,11 @@
 using API.Data;
+using API.Entities;
 using API.Extensions;
 using API.Interfaces;
 using API.MiddleWare;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -47,19 +49,20 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// using var scope = app.Services.CreateScope();
-// var service = scope.ServiceProvider;
-// try
-// {
-//     var context = service.GetRequiredService<DataContext>();
-//     await context.Database.MigrateAsync();
-//     await Seed.SeedUsers(context);
-// }
-// catch (Exception ex)
-// {
-//     var logger = service.GetService<ILogger<Program>>();
-//     logger.LogError(ex, "An Error Seeding");
-// }
+using var scope = app.Services.CreateScope();
+var service = scope.ServiceProvider;
+try
+{
+    var context = service.GetRequiredService<DataContext>();
+    await context.Database.MigrateAsync();
+    var userManager = service.GetRequiredService<UserManager<AppUser>>();
+    await Seed.SeedUsers(userManager);
+}
+catch (Exception ex)
+{
+    var logger = service.GetService<ILogger<Program>>();
+    logger.LogError(ex, "An Error Seeding");
+}
 
 
 app.Run();

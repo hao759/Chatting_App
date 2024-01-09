@@ -3,6 +3,7 @@ using API.DTO;
 using API.Entities;
 using API.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
@@ -12,12 +13,12 @@ namespace API.Controllers
 {
     public class AccountsController : BaseController
     {
-        private DataContext _context;
+        private UserManager<AppUser> _userManager;
         private ITokenService _tokenService;
         private IMapper _mapper;
-        public AccountsController(DataContext dataContext, ITokenService tokenService1, IMapper mapper)
+        public AccountsController(UserManager<AppUser> userManager, ITokenService tokenService1, IMapper mapper)//DataContext dataContext
         {
-            _context = dataContext;
+            _userManager = userManager;
             _tokenService = tokenService1;
             _mapper = mapper;
         }
@@ -27,19 +28,31 @@ namespace API.Controllers
             var user = _mapper.Map<AppUser>(registerDto);
 
             user.Name = registerDto.Username;
-            _context.appUsers.Add(user);
-            await _context.SaveChangesAsync();
+            // _context.appUsers.Add(user);
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
             return Ok(user);
+            // return new UserDTO
+            // {
+            //     UserName = user.UserName,
+            //     Token = await _tokenService.CreateToken(user),
+            //     KnownAs = user.KnownAs,
+            //     Gender = user.Gender
+            // };
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<UserDTO>> Login(LoginDTO login)
         {
-            var user = await _context.appUsers.Include(s => s.Photos)
+            // var user = await _userManager.appUsers.Include(s => s.Photos)
+            var user = await _userManager.Users.Include(s => s.Photos)
             .FirstOrDefaultAsync(s => s.Name == login.Name);
             if (user == null)
                 return Unauthorized();
-
+            var result = await _userManager.CheckPasswordAsync(user, login.password);
+            if (!result)
+                return Unauthorized("Invalid Password");
             return new UserDTO
             {
                 UserName = login.Name,
