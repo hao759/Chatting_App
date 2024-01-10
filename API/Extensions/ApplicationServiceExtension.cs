@@ -24,6 +24,12 @@ namespace API.Extensions
            .AddRoleManager<RoleManager<AppRole>>()
            .AddEntityFrameworkStores<DataContext>();
 
+            services.AddAuthorization(opt =>
+         {
+             opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Member"));
+             opt.AddPolicy("ModeratePhotoRole", policy => policy.RequireRole("Admin", "Moderator"));
+         });
+
 
             services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
