@@ -56,7 +56,8 @@ try
     var context = service.GetRequiredService<DataContext>();
     await context.Database.MigrateAsync();
     var userManager = service.GetRequiredService<UserManager<AppUser>>();
-    await Seed.SeedUsers(userManager);
+    var roleManager = service.GetRequiredService<RoleManager<AppRole>>();
+    await Seed.SeedUsers(userManager, roleManager);
 }
 catch (Exception ex)
 {

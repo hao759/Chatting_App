@@ -23,7 +23,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
         [HttpPost("register")] //api/control/regis
-        public async Task<ActionResult<AppUser>> Register(RegisterDTO registerDto)
+        public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDto)
         {
             var user = _mapper.Map<AppUser>(registerDto);
 
@@ -32,14 +32,16 @@ namespace API.Controllers
             var result = await _userManager.CreateAsync(user, registerDto.Password);
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
-            return Ok(user);
-            // return new UserDTO
-            // {
-            //     UserName = user.UserName,
-            //     Token = await _tokenService.CreateToken(user),
-            //     KnownAs = user.KnownAs,
-            //     Gender = user.Gender
-            // };
+            var roleResult = await _userManager.AddToRoleAsync(user, "Member");
+
+            if (!roleResult.Succeeded) return BadRequest(result.Errors);
+            return new UserDTO
+            {
+                UserName = user.UserName,
+                Token = await _tokenService.CreateToken(user),
+                KnownAs = user.KnownAs,
+                Gender = user.Gender
+            };
         }
 
         [HttpPost("login")]
@@ -56,7 +58,7 @@ namespace API.Controllers
             return new UserDTO
             {
                 UserName = login.Name,
-                Token = _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 PhotoUrl = user.Photos.FirstOrDefault(s => s.IsMain == true)?.Url,
                 KnownAs = user.KnownAs,
                 Gender = user.Gender,
