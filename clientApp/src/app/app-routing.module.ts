@@ -11,6 +11,7 @@ import { MemberEditComponent } from './Component/members/member-edit/member-edit
 import { PreventUnsaveGuard } from './_guard/prevent-unsave.guard';
 import { MemberDetailedResolver } from './_resolves/member-detailed.resolver';
 import { AdminPannelComponent } from './Component/admin/admin-pannel/admin-pannel.component';
+import { AdminGuard } from './_guard/admin.guard';
 
 const routes: Routes = [
   {
@@ -52,7 +53,8 @@ const routes: Routes = [
       },
       {
         path: "admin",
-        component: AdminPannelComponent
+        component: AdminPannelComponent,
+        canActivate: [AdminGuard],
       },
     ]
   },
