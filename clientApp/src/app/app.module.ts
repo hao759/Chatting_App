@@ -31,6 +31,7 @@ import { DataPickerComponent } from './_forms/data-picker/data-picker.component'
 
 import { MembermessageComponent } from './Component/members/membermessage/membermessage.component';
 import { AdminPannelComponent } from './Component/admin/admin-pannel/admin-pannel.component';
+import { HasRoleDirective } from './_directives/has-role.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { AdminPannelComponent } from './Component/admin/admin-pannel/admin-panne
     DataPickerComponent,
     MembermessageComponent,
     AdminPannelComponent,
+    HasRoleDirective,
   ],
   imports: [
     FileUploadModule,

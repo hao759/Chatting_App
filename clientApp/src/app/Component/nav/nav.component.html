@@ -28,7 +28,7 @@
                     <a class="nav-link active" routerLink='error' routerLinkActive="active" aria-current="list">Test
                         Error</a>
                 </li>
-                <li class="nav-item">
+                <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
                     <a class="nav-link active" routerLink='admin' routerLinkActive="active"
                         aria-current="list">AdminPanel</a>
                 </li>
