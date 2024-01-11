@@ -10,6 +10,7 @@ import { TestErrorComponent } from './error/test-error/test-error.component';
 import { MemberEditComponent } from './Component/members/member-edit/member-edit.component';
 import { PreventUnsaveGuard } from './_guard/prevent-unsave.guard';
 import { MemberDetailedResolver } from './_resolves/member-detailed.resolver';
+import { AdminPannelComponent } from './Component/admin/admin-pannel/admin-pannel.component';
 
 const routes: Routes = [
   {
@@ -48,7 +49,11 @@ const routes: Routes = [
       {
         path: "error",
         component: TestErrorComponent
-      }
+      },
+      {
+        path: "admin",
+        component: AdminPannelComponent
+      },
     ]
   },
 

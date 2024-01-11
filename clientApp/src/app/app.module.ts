@@ -30,6 +30,7 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DataPickerComponent } from './_forms/data-picker/data-picker.component';
 
 import { MembermessageComponent } from './Component/members/membermessage/membermessage.component';
+import { AdminPannelComponent } from './Component/admin/admin-pannel/admin-pannel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { MembermessageComponent } from './Component/members/membermessage/member
     TextInputComponent,
     DataPickerComponent,
     MembermessageComponent,
+    AdminPannelComponent,
   ],
   imports: [
     FileUploadModule,

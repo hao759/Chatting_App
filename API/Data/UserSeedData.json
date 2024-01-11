@@ -14,7 +14,7 @@
     "Photos": [
       {
         "Url": "https://res.cloudinary.com/dhzi2feeu/image/upload/v1704808983/da-net7u/zob1hdwpswt2pdicnmge.jpg",
-        "isMain": true
+        "IsMain": true
       }
     ]
   },
@@ -33,7 +33,7 @@
     "Photos": [
       {
         "Url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQupL41cHoXslXNpY7JlkTX4Wz0PA6jSO_v8g&usqp=CAU",
-        "isMain": true
+        "IsMain": true
       }
     ]
   },
@@ -52,7 +52,7 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/35.jpg",
-        "isMain": true
+        "IsMain": true
       }
     ]
   },
@@ -71,7 +71,7 @@
     "Photos": [
       {
         "Url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKCRDERhyXcBlafXtQ7lVgxpuQ5cJfhyBzJ3cnkq1ttGDZusAfilt0hXbDEucG0RgEdig&usqp=CAU",
-        "isMain": true
+        "IsMain": true
       }
     ]
   },
@@ -90,7 +90,7 @@
     "Photos": [
       {
         "Url": "https://ggmeo.com/images/linh-thu-dtcl/yasuo-long-kiem-ti-ni.jpg",
-        "isMain": true
+        "IsMain": true
       }
     ]
   },
@@ -109,7 +109,7 @@
     "Photos": [
       {
         "Url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp8RFJltAwau5GmFWJCHIrYyTc3fGCkmuitg&usqp=CAU",
-        "isMain": true
+        "IsMain": true
       }
     ]
   }

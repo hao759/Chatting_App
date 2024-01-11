@@ -28,6 +28,10 @@
                     <a class="nav-link active" routerLink='error' routerLinkActive="active" aria-current="list">Test
                         Error</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink='admin' routerLinkActive="active"
+                        aria-current="list">AdminPanel</a>
+                </li>
             </ul>
             <ul *ngIf="(accountService.currentUser| async) as user"
                 class="navbar-nav me-auto mt-2 mt-lg-0 d-flex align-items-center Logout">
