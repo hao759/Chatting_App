@@ -25,6 +25,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateIssuer = false,
         ValidateAudience = false,
     };
+    opt.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            var accessToken = context.Request.Query["access_token"];
+
+            var path = context.HttpContext.Request.Path;
+            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
+            {
+                context.Token = accessToken;
+            }
+
+            return Task.CompletedTask;
+        }
+    };
 });
 var app = builder.Build();
 app.UseMiddleware<ExceptionMiddleWare>();
@@ -35,7 +50,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
-app.UseCors(build => build.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+app.UseCors(build => build.AllowAnyHeader()
+.AllowAnyMethod()
+.AllowCredentials()
+.WithOrigins("https://localhost:4200"));
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
