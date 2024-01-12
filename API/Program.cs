@@ -2,6 +2,7 @@ using API.Data;
 using API.Entities;
 using API.Extensions;
 using API.MiddleWare;
+using API.SignalR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +39,8 @@ app.UseCors(build => build.AllowAnyHeader().AllowAnyMethod().WithOrigins("https:
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHub<PresenceHub>("hubs/presence");
+
 using var scope = app.Services.CreateScope();
 var service = scope.ServiceProvider;
 try
