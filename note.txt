@@ -1,3 +1,41 @@
+Login:  async Task<ActionResult<UserDTO>> Login
+
+ _userManager.Users.FirstOrDefaultAsync(s => s.Name =
+ await _userManager.CheckPasswordAsync(user, login.password);
+
+ _tokenService.CreateToken(user),
+
+
+  AccountsController(UserManager<AppUser> userManager,  IMapper mapper,   //DataContext dataContext
+   _userManager.CreateAsync(user, registerDto.Password);
+    _userManager.AddToRoleAsync(user, "Member");
+
+
+
+ public PhotoService(IOptions<CloudinarySetting> config)
+
+
+===================================Repository=========================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 add System.IdentityModel.Token
 
 ng generate environments

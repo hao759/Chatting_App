@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Data;
 using API.DTO;
 using API.Entities;
@@ -34,12 +30,11 @@ namespace API.Controllers
 
             if (username == createMessageDto.RecipientUsername.ToLower())
                 return BadRequest("You cannot send messages to yourself");
-
             var sender = await UserRepositoty.GetUserByUsernameAsync(username);
             var recipient = await UserRepositoty.GetUserByUsernameAsync(createMessageDto.RecipientUsername);
 
-            if (recipient == null) return NotFound();
-
+            if (recipient == null)
+                return NotFound();
             var message = new Message
             {
                 Sender = sender,
@@ -81,18 +76,14 @@ namespace API.Controllers
 
             if (message.SenderUsername != username && message.RecipientUsername != username)
                 return Unauthorized();
-
-            if (message.SenderUsername == username) message.SenderDeleted = true;
-
-            if (message.RecipientUsername == username) message.RecipientDeleted = true;
-
+            if (message.SenderUsername == username)
+                message.SenderDeleted = true;
+            if (message.RecipientUsername == username)
+                message.RecipientDeleted = true;
             if (message.SenderDeleted && message.RecipientDeleted)
-            {
                 messageRepository.DeleteMessage(message);
-            }
-
-            if (await messageRepository.SaveAllAsync()) return Ok();
-
+            if (await messageRepository.SaveAllAsync())
+                return Ok();
             return BadRequest("Problem deleting the message");
         }
 

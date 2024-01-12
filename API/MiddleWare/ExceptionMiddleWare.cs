@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Text.Json;
-using System.Threading.Tasks;
 using API.Error;
 
 namespace API.MiddleWare
@@ -13,14 +9,12 @@ namespace API.MiddleWare
         private readonly RequestDelegate _next;
         public ILogger<ExceptionMiddleWare> Logger { get; }
         public IHostEnvironment HostEnvironment { get; }
-
         public ExceptionMiddleWare(RequestDelegate next, ILogger<ExceptionMiddleWare> logger, IHostEnvironment hostEnvironment)
         {
             this.HostEnvironment = hostEnvironment;
             this.Logger = logger;
             this._next = next;
         }
-
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try

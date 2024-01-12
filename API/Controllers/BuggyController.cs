@@ -1,6 +1,5 @@
 using API.Data;
 using API.Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -8,7 +7,6 @@ namespace API.Controllers
     public class BuggyController : BaseController
     {
         DataContext _context;
-
         public BuggyController(DataContext context)
         {
             _context = context;
@@ -43,9 +41,5 @@ namespace API.Controllers
         {
             return BadRequest("This is GetBadRequest");
         }
-
-
-
-
     }
 }

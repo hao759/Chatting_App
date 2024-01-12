@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Extensions;
 using API.Interfaces;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -20,7 +16,6 @@ namespace API.Helper
 
             var repo = resultContext.HttpContext.RequestServices.GetRequiredService<IUserRepositoty>();
             var user = await repo.GetUserByIdAsync(userId);
-
 
             // var uow = resultContext.HttpContext.RequestServices.GetRequiredService<IUnitOfWork>();
             // var user = await uow.UserRepository.GetUserByIdAsync(userId);

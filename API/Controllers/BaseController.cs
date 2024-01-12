@@ -1,5 +1,4 @@
-﻿using API.Data;
-using API.Helper;
+﻿using API.Helper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -9,7 +8,6 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class BaseController : Controller
     {
-        private DataContext _context { get; set; }
         public BaseController()
         {
         }

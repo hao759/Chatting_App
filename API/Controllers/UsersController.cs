@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-using API.Data;
-using API.DTO;
+﻿using API.DTO;
 using API.Entities;
 using API.Extensions;
 using API.Helper;
@@ -8,13 +6,10 @@ using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    // [ApiController]
     [Authorize]
-    // [Route("api/[controller]")]
     public class UsersController : BaseController
     {
         public IUserRepositoty _userRepositoty;
@@ -34,7 +29,6 @@ namespace API.Controllers
 
             if (string.IsNullOrEmpty(userParams.Gender))
                 userParams.Gender = currentUser.Gender == "male" ? "female" : "male";
-
 
             var users = await _userRepositoty.GetMembersAsync(userParams);
             Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize,

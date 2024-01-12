@@ -7,8 +7,6 @@ namespace API.Error
 {
     public class ApiException
     {
-
-
         public ApiException(int statusCode, string details, string Message)
         {
             this.StatusCode = statusCode;

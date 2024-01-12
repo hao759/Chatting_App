@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.DTO;
 using API.Entities;
 using API.Helper;
@@ -16,7 +12,6 @@ namespace API.Data
     {
         public DataContext _context { get; }
         public IMapper Mapper { get; }
-
         public UserRepository(DataContext dataContext, IMapper mapper)
         {
             this.Mapper = mapper;
@@ -42,7 +37,6 @@ namespace API.Data
         {
             _context.Entry(user).State = EntityState.Modified;
         }
-
 
         async Task<bool> IUserRepositoty.SaveAllAsync()
         {
@@ -71,7 +65,6 @@ namespace API.Data
 
         public async Task<MemberDTO> GetMemberAsync(string username)
         {
-
             return await _context.appUsers.Where(x => x.Name == username)
            .ProjectTo<MemberDTO>(Mapper.ConfigurationProvider)
            .SingleOrDefaultAsync();

@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.DTO;
 using API.Entities;
 using API.Extensions;
 using AutoMapper;
-using AutoMapper.Execution;
 
 namespace API.Helper
 {

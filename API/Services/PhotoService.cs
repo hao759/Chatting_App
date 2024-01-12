@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Helper;
 using API.Interfaces;
 using CloudinaryDotNet;
@@ -22,7 +18,6 @@ namespace API.Services
             config.Value.ApiSecret
 );
             _cloud = new Cloudinary(acc);
-
         }
         public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
         {
@@ -39,14 +34,12 @@ namespace API.Services
                 };
                 uploadResult = await _cloud.UploadAsync(uploadParams);
             }
-
             return uploadResult;
         }
 
         public async Task<DeletionResult> DeletePhotoAsync(string publicID)
         {
             var deleteParams = new DeletionParams(publicID);
-
             return await _cloud.DestroyAsync(deleteParams);
         }
     }

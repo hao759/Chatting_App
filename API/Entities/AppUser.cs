@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using API.Extensions;
 using Microsoft.AspNetCore.Identity;
 
 namespace API.Entities
@@ -7,7 +6,6 @@ namespace API.Entities
     public class AppUser : IdentityUser<int> //int cho iD
     {
         public string Name { get; set; }
-
         [DataType(DataType.DateTime)]
         public DateOnly DateOfBirth { get; set; }
         public string KnownAs { get; set; }
@@ -26,7 +24,6 @@ namespace API.Entities
         // {
         //     return DateOfBirth.CaculateAge();
         // }
-
         public List<Message> MessagesSent { get; set; }
         public List<Message> MessagesReceived { get; set; }
         public ICollection<AppUserRole> UserRoles { get; set; }

@@ -1,13 +1,10 @@
-﻿using API.Data;
-using API.DTO;
+﻿using API.DTO;
 using API.Entities;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace API.Controllers
 {
@@ -28,8 +25,7 @@ namespace API.Controllers
             var user = _mapper.Map<AppUser>(registerDto);
 
             user.Name = registerDto.Username;
-            // _context.appUsers.Add(user);
-            var result = await _userManager.CreateAsync(user, registerDto.Password);
+            var result = await _userManager.CreateAsync(user, registerDto.Password);//???????????????
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
             var roleResult = await _userManager.AddToRoleAsync(user, "Member");

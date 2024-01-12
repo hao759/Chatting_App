@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.DTO;
 using API.Entities;
 using API.Helper;
@@ -20,7 +16,6 @@ namespace API.Data
         {
             this.mapper = mapper;
             this._context = dataContext;
-
         }
         public void AddMessage(Message message)
         {
@@ -42,7 +37,6 @@ namespace API.Data
             var query = _context.Message
             .OrderBy(x => x.MessageSent)
             .AsQueryable();
-
             query = messageParams.Container switch
             {
                 "Inbox" => query.Where(u => u.Recipient.Name == messageParams.Username &&
@@ -52,9 +46,7 @@ namespace API.Data
                 _ => query.Where(u => u.Recipient.Name == messageParams.Username
                     && u.RecipientDeleted == false && u.DateRead == null)
             };
-
             var messages = query.ProjectTo<MessageDto>(mapper.ConfigurationProvider);
-
             return await PagedList<MessageDto>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
         }
 
@@ -68,10 +60,8 @@ namespace API.Data
            || s.RecipientUsername == recipientUserName && s.SenderDeleted == false
            && s.SenderUsername == currentUserName).OrderBy(m => m.MessageSent)
            .ToListAsync();
-
             var unreadMessages = query.Where(m => m.DateRead == null
                 && m.RecipientUsername == currentUserName).ToList();
-
             if (unreadMessages.Any())
             {
                 foreach (var message in unreadMessages)
@@ -80,7 +70,6 @@ namespace API.Data
                 }
                 await _context.SaveChangesAsync();
             }
-
             return mapper.Map<IEnumerable<MessageDto>>(query);
         }
 

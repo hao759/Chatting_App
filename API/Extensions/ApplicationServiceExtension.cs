@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
 using API.Helper;
@@ -29,8 +25,6 @@ namespace API.Extensions
              opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
              opt.AddPolicy("ModeratePhotoRole", policy => policy.RequireRole("Admin", "Moderator"));
          });
-
-
             services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
             services.AddDbContext<DataContext>(opt =>
@@ -39,9 +33,7 @@ namespace API.Extensions
              });
 
             services.AddScoped<IUserRepositoty, UserRepository>();
-
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
             services.Configure<CloudinarySetting>(configuration.GetSection("CloudinarySetting"));
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<LogUserActivity>();
