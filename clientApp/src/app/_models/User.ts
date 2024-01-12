@@ -4,5 +4,5 @@ export class User {
     photoUrl!: string
     knownas!: string
     gender!: string
-    roles?: string[];
+    roles!: string[];
 }

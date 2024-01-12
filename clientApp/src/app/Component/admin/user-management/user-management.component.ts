@@ -33,33 +33,28 @@ export class UserManagementComponent {
       }
     })
   }
-  openRolesModal() {
-    const initialState: ModalOptions = {
+  openRolesModal(user: User) {
+    const config = {
+      class: 'modal-dialog-centered',
       initialState: {
-        list: ["abc", "cdf"],
-        title: "Ok"
+        username: user.userName,
+        availableRoles: this.availableRoles,
+        selectedRoles: [...user.roles]//!  ??
       }
     }
-    this.bsModalRef = this.modalService.show(RolesModalComponent, initialState)
-    this.bsModalRef.content!.closeBtnname = 'Close';
-    // const config = {
-    //   class: 'modal-dialog-centered',
-    //   initialState: {
-    //     username: user.userName,
-    //     availableRoles: this.availableRoles,
-    //     selectedRoles: [...user.roles ?]
-    //   }
-    // }
-    // this.bsModalRef = this.modalService.show(RolesModalComponent, config);
-    // this.bsModalRef.onHide?.subscribe({
-    //   next: () => {
-    //     const selectedRoles = this.bsModalRef.content?.selectedRoles;
-    //     if (!this.arrayEqual(selectedRoles, user.roles)) {
-    //       this.adminService.updateUserRoles(user.userName, selectedRoles!).subscribe({
-    //         next: roles => user.roles = roles
-    //       })
-    //     }
-    //   }
-    // })
+    this.bsModalRef = this.modalService.show(RolesModalComponent, config);
+    this.bsModalRef.onHide?.subscribe({
+      next: () => {
+        const selectedRoles = this.bsModalRef.content?.selectedRoles;
+        if (!this.arrayEqual(selectedRoles, user.roles)) {
+          this.adminService.updateUserRoles(user.userName, selectedRoles!).subscribe({
+            next: roles => user.roles = roles
+          })
+        }
+      }
+    })
+  }
+  private arrayEqual(arr1: any, arr2: any) {
+    return JSON.stringify(arr1.sort()) === JSON.stringify(arr2.sort())
   }
 }
