@@ -123,3 +123,10 @@ Client : PaginatedResult   có 1 4 thuộc tính    2 result
 gọi :  add HttpParams vô param
 chạy nhận res gán về body, đọc header gán pagination
 
+=============================Dùng Modal=================================
+trên tk gọi :"openRolesModal( )"
+this.bsModalRef = this.modalService.show(RolesModalComponent, initialState)
+    this.bsModalRef.content!.closeBtnname = 'Close';
+
+
+kia template thui :bsModelRef?.hide
