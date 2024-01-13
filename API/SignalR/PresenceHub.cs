@@ -17,7 +17,7 @@ namespace API.SignalR
         }
         public override async Task OnDisconnectedAsync(Exception ex)
         {
-            await Clients.Others.SendAsync("UserIsOffline", Context.User.GetUserName());
+            await Clients.All.SendAsync("UserIsOffline", Context.User.GetUserName());
             await base.OnDisconnectedAsync(ex);
         }
     }

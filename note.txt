@@ -1,3 +1,6 @@
+npm i @microsoft/signalr --legacy-peer-deps
+
+
 Login:  async Task<ActionResult<UserDTO>> Login
 
  _userManager.Users.FirstOrDefaultAsync(s => s.Name =
